@@ -1,14 +1,15 @@
 {
-  "name": "reactnativerecaptchav3",
-  "version": "1.0.0",
-  "description": "ReCaptcha V3 for React Native",
+  "name": "react_helmet_recaptcha_v3",
+  "version": "1.0.1",
+  "description": "ReCaptcha V3 implemented with React Helmet",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "react",
-    "react native",
+		"react native",
+		"helmet",
     "recaptcha",
     "recaptcha v3",
 		"google recaptcha",
@@ -18,9 +19,9 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com:nwehner/reactnativerecaptchav3.git"
+		"url": "git+ssh://git@github.com:nwehner/react_helmet_recaptcha_v3.git"
 	},
-	"homepage": "https://github.com/nwehner/reactnativerecaptchav3",
+	"homepage": "https://github.com/nwehner/react_helmet_recaptcha_v3",
   "dependencies": {
     "react": "^17.0.1",
     "react-helmet": "^6.1.0"
