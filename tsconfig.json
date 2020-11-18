@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"noImplicitReturns": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"sourceMap": true,
+		"declaration": true,
+		"esModuleInterop": true,
+		"downlevelIteration": true,
+		"jsx": "react",
+		"moduleResolution": "node",
+		"target": "ES2019",
+		"outDir": "dist",
+		"rootDir": "src",
+		"lib": [
+			"ES2015",
+			"ES2016",
+			"ES2017",
+			"ES2018",
+			"ES2019"
+		]
+	},
+}
