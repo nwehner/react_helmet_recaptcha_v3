@@ -8,13 +8,19 @@
   },
   "keywords": [
     "react",
-    "native",
+    "react native",
     "recaptcha",
-    "recaptcha",
-    "v3"
+    "recaptcha v3",
+		"google recaptcha",
+		"google recaptcha v3"
   ],
   "author": "Nick Wehner <nick@octogroup.org>",
-  "license": "MIT",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com:nwehner/reactnativerecaptchav3.git"
+	},
+	"homepage": "https://github.com/nwehner/reactnativerecaptchav3",
   "dependencies": {
     "react": "^17.0.1",
     "react-helmet": "^6.1.0"
