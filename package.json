@@ -1,6 +1,6 @@
 {
   "name": "react_helmet_recaptcha_v3",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ReCaptcha V3 implemented with React Helmet",
   "main": "dist/index.js",
   "scripts": {
@@ -8,27 +8,27 @@
   },
   "keywords": [
     "react",
-		"react native",
-		"helmet",
+    "react native",
+    "helmet",
     "recaptcha",
     "recaptcha v3",
-		"google recaptcha",
-		"google recaptcha v3"
+    "google recaptcha",
+    "google recaptcha v3"
   ],
   "author": "Nick Wehner <nick@octogroup.org>",
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+ssh://git@github.com:nwehner/react_helmet_recaptcha_v3.git"
-	},
-	"homepage": "https://github.com/nwehner/react_helmet_recaptcha_v3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:nwehner/react_helmet_recaptcha_v3.git"
+  },
+  "homepage": "https://github.com/nwehner/react_helmet_recaptcha_v3",
   "dependencies": {
     "react": "^17.0.1",
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.8",
-    "@types/react": "^16.9.56",
+    "@types/react": "^17.0.0",
     "@types/react-helmet": "^6.1.0",
     "typescript": "^4.0.5"
   }

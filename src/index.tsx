@@ -31,15 +31,16 @@ declare const grecaptcha: GrecaptchaV3.Grecaptcha;
  */
 const makeScriptSrc = (key: string): string => 'https://www.google.com/recaptcha/api.js?render=' + key;
 export const LoadReCaptcha = () => (<Helmet>
-	<script src={ makeScriptSrc(recaptchaSecret) } async={true} defer={true} />
+	<script src={ makeScriptSrc(recaptchaSecret) } async={true} defer={true}/>
 </Helmet>);
 
 export type ExecuteRecaptcha = (action?: string) => Promise<string>;
 
 export const runReCaptcha = (execute: (executeRecaptcha: ExecuteRecaptcha) => void): void => {
-	if (grecaptcha) {
-		grecaptcha.ready(() => {
-			const executeRecaptcha: ExecuteRecaptcha = (action: string) => grecaptcha.execute(recaptchaSecret, { action: action });
+	let _grecaptcha = grecaptcha ? grecaptcha : null;
+	if (_grecaptcha) {
+		_grecaptcha.ready(() => {
+			const executeRecaptcha: ExecuteRecaptcha = (action: string) => (_grecaptcha as GrecaptchaV3.Grecaptcha).execute(recaptchaSecret, { action: action });
 			return execute(executeRecaptcha);
 		})
 	}
