@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from "react-helmet";
 
 /**
@@ -18,13 +18,10 @@ const recaptchaSecret: string = getRcSecret();
 /**
  * The Google ReCAPTCHA script includes the `grecaptcha` object
  */
-declare namespace GrecaptchaV3 {
-	interface Grecaptcha {
-		ready: (cb: () => void) => void
-		execute: (key: string, action: { action: string }) => Promise<string>
-	}
+export interface GrecaptchaV3 {
+	ready: (cb: () => void) => void
+	execute: (key: string, action: { action: string } | undefined) => Promise<string>
 }
-declare const grecaptcha: GrecaptchaV3.Grecaptcha;
 
 /**
  * Create the ReCAPTCHA script element
@@ -36,25 +33,28 @@ export const LoadReCaptcha = () => (<Helmet>
 
 export type ExecuteRecaptcha = (action?: string) => Promise<string>;
 
-export const runReCaptcha = (execute: (executeRecaptcha: ExecuteRecaptcha) => void): void => {
-	let _grecaptcha = grecaptcha ? grecaptcha : null;
-	if (_grecaptcha) {
-		_grecaptcha.ready(() => {
-			const executeRecaptcha: ExecuteRecaptcha = (action: string) => (_grecaptcha as GrecaptchaV3.Grecaptcha).execute(recaptchaSecret, { action: action });
-			return execute(executeRecaptcha);
-		})
-	}
-	else {
-		throw new Error('grecaptcha is not available.');
-	}
-}
+export const RunReCaptcha = ({ action }:{ action: string }): JSX.Element => {
+	const windowGlobal = typeof window !== 'undefined' && window;
+	const _gcpta: GrecaptchaV3 | null = windowGlobal ? (windowGlobal as any).grecaptcha : null;
 
-export const RunReCaptchaOnComponentLoad = ({ action }:{ action: string}): JSX.Element => {
-	useEffect(() => {
-		runReCaptcha((executeRecaptcha) => {
-			const memoizedCallback: ExecuteRecaptcha = useCallback(executeRecaptcha, [action]);
-			return memoizedCallback(action);
+	const runReCaptcha = (action?: string | undefined): Promise<string> => {
+		const promise: Promise<string> = new Promise<string>((resolve, reject) => {
+			if (_gcpta) {
+				_gcpta.ready(() => {
+					_gcpta.execute(recaptchaSecret, action ? { action: action } : undefined).then((token: string) => {
+						resolve(token);
+					}).catch((reason: any) => reject(reason));
+				});
+			}
+			else {
+				reject('ReCAPTCHA is not loaded. Please reload this page and try again.');
+			}
 		});
+		return promise;
+	}
+
+	useEffect(() => {
+		runReCaptcha(action);
 	}, []);
 
 	// Render an empty div
