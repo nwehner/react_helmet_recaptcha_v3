@@ -1,6 +1,6 @@
 {
   "name": "react_helmet_recaptcha_v3",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "ReCaptcha V3 implemented with React Helmet",
   "main": "dist/index.js",
   "scripts": {

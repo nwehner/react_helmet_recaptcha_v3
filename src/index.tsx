@@ -47,7 +47,7 @@ export const RunReCaptcha = ({ action }:{ action: string }): JSX.Element => {
 				});
 			}
 			else {
-				reject('ReCAPTCHA is not loaded. Please reload this page and try again.');
+				reject('ReCAPTCHA is not loaded. Please reload the page and try again.');
 			}
 		});
 		return promise;
@@ -59,4 +59,26 @@ export const RunReCaptcha = ({ action }:{ action: string }): JSX.Element => {
 
 	// Render an empty div
 	return <></>;
+}
+
+export const runReCaptcha = (action?: string | undefined): Promise<string> => {
+	const windowGlobal = typeof window !== 'undefined' && window;
+	const _gcpta: GrecaptchaV3 | null = windowGlobal ? (windowGlobal as any).grecaptcha : null;
+
+	const promise: Promise<string> = new Promise<string>((resolve, reject) => {
+		if (_gcpta) {
+			_gcpta.ready(() => {
+				_gcpta.execute(recaptchaSecret, action ? { action } : undefined).then((token: string) => {
+					return resolve(token);
+				}).catch((reason: any) => {
+					return reject(reason);
+				})
+			});
+		}
+		else {
+			return reject('ReCAPTCHA is not loaded. Please reload the page and try again.');
+		}
+	});
+
+	return promise;
 }
