@@ -6,5 +6,5 @@ Place `<LoadReCaptcha />` on the page.
 Import { runReCaptcha } to programmatically-invoke ReCaptcha on an action, e.g. after a user submits a form.
 Use like: `runReCaptcha('action').then((token) => // Send token to your backend to verify ).catch((reason) => // Handle ReCaptcha errors)`
 
-Import { RunReCaptchaOnComponentLoad } to execute ReCaptcha automatically just when the component loads.
-E.g. place this component on your homepage: `<RunReCaptchaOnComponentLoad action='homepage'>` to execute ReCaptcha when a user loads your homepage.
+Import { RunReCaptcha } to execute ReCaptcha automatically just when the component loads.
+E.g. place this component on your homepage: `<RunReCaptcha action='homepage'>` to execute runReCaptcha when a user loads your homepage.
